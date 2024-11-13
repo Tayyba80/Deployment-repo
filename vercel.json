@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "my-first-app/package.json",
+      "use": "@vercel/static-build",
+      "config": { "distDir": "my-first-app/build" }
+    },
+    {
+      "src": "Backend/**/*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/Backend/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/my-first-app/$1"
+    }
+  ]
+}
